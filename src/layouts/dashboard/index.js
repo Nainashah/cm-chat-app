@@ -54,7 +54,7 @@ const Other_list = [
 
 const AntSwitch = styled(Switch)(({ theme }) => ({
   width: 40,
-  height: 20,
+  height: 20,a
   padding: 0,
   display: "flex",
   "&:active": {
