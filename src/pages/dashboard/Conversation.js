@@ -16,6 +16,8 @@ import { SimpleBarStyle } from "../../components/Scrollbar";
 
 import { ChatHeader, ChatFooter } from "../../components/Chat";
 import useResponsive from "../../hooks/useResponsive";
+import { Chat_History } from "../../data";
+import { Timeline } from "../../sections/Dashboard/Conversation";
 
 const MsgBox = styled(Box)(({ theme }) => ({
   position: "relative",
