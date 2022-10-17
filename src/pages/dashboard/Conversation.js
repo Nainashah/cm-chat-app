@@ -4,14 +4,16 @@ import {
   Typography,
   Divider,
   IconButton,
-  Menu,
-  MenuItem,
 } from "@mui/material";
 import React from "react";
 import { faker } from "@faker-js/faker";
 import { Link } from "react-router-dom";
 import { styled, useTheme, alpha } from "@mui/material/styles";
-import { DotsThreeVertical, DownloadSimple, Image } from "phosphor-react";
+import {
+  CaretDown,
+  DownloadSimple,
+  Image,
+} from "phosphor-react";
 import { SimpleBarStyle } from "../../components/Scrollbar";
 
 import { ChatHeader, ChatFooter } from "../../components/Chat";
@@ -102,68 +104,8 @@ const list = [
   },
 ];
 
-const Message_options = [
-  {
-    title: "Reply",
-  },
-  {
-    title: "React to message",
-  },
-  {
-    title: "Forward message",
-  },
-  {
-    title: "Star message",
-  },
-  {
-    title: "Report",
-  },
-  {
-    title: "Delete Message",
-  },
-];
-
-const MessageOption = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-  return (
-    <>
-      <DotsThreeVertical
-        size={20}
-        id="basic-button"
-        aria-controls={open ? "basic-menu" : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? "true" : undefined}
-        onClick={handleClick}
-      />
-      <Menu
-        id="basic-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        MenuListProps={{
-          "aria-labelledby": "basic-button",
-        }}
-      >
-        <Stack spacing={1} px={1}>
-          {Message_options.map((el) => (
-            <MenuItem onClick={handleClose}>{el.title}</MenuItem>
-          ))}
-        </Stack>
-      </Menu>
-    </>
-  );
-};
-
-const Conversation = ({ isMobile }) => {
+const Conversation = ({isMobile}) => {
   const theme = useTheme();
- 
   return (
     <Box p={isMobile ? 1 : 3}>
       <Stack spacing={3}>
@@ -207,6 +149,21 @@ const Conversation = ({ isMobile }) => {
                             width: "max-content",
                           }}
                         >
+                          <Stack
+                            direction={"row"}
+                            alignItems="center"
+                            justifyContent={"end"}
+                          >
+                            <CaretDown
+                              className="options"
+                              style={{
+                                color: el.incoming
+                                  ? theme.palette.text
+                                  : "#fff",
+                              }}
+                              p={1}
+                            />
+                          </Stack>
                           <Stack spacing={1}>
                             <img
                               src={el.img}
@@ -221,7 +178,6 @@ const Conversation = ({ isMobile }) => {
                             </Typography>
                           </Stack>
                         </Box>
-                        <MessageOption />
                       </Stack>
                     </MsgBox>
                   );
@@ -244,6 +200,21 @@ const Conversation = ({ isMobile }) => {
                             width: "max-content",
                           }}
                         >
+                          <Stack
+                            direction={"row"}
+                            alignItems="center"
+                            justifyContent={"end"}
+                          >
+                            <CaretDown
+                              className="options"
+                              style={{
+                                color: el.incoming
+                                  ? theme.palette.text
+                                  : "#fff",
+                              }}
+                              p={1}
+                            />
+                          </Stack>
                           <Stack spacing={2}>
                             <Stack
                               p={2}
@@ -271,7 +242,6 @@ const Conversation = ({ isMobile }) => {
                             </Typography>
                           </Stack>
                         </Box>
-                        <MessageOption />
                       </Stack>
                     </MsgBox>
                   );
@@ -293,6 +263,19 @@ const Conversation = ({ isMobile }) => {
                             width: "max-content",
                           }}
                         >
+                          <Stack
+                            direction={"row"}
+                            alignItems="center"
+                            justifyContent={"end"}
+                          >
+                            <CaretDown
+                              className="options"
+                              style={{
+                                color: el.incoming ? "#696969" : "#fff",
+                              }}
+                              p={1}
+                            />
+                          </Stack>
                           <Stack spacing={2}>
                             <Stack
                               p={2}
@@ -316,8 +299,7 @@ const Conversation = ({ isMobile }) => {
                                 <Typography
                                   component={Link}
                                   to="//https://www.youtube.com"
-                                  variant="subtitle2"
-                                  sx={{color: theme.palette.primary.main}}
+                                  variant="cption"
                                 >
                                   www.youtube.com/watch/v12uqywHTY2
                                 </Typography>
@@ -331,7 +313,6 @@ const Conversation = ({ isMobile }) => {
                             </Typography>
                           </Stack>
                         </Box>
-                        <MessageOption />
                       </Stack>
                     </MsgBox>
                   );
@@ -348,12 +329,25 @@ const Conversation = ({ isMobile }) => {
                           py={1.5}
                           sx={{
                             backgroundColor: el.incoming
-                              ? alpha(theme.palette.background.paper, 1)
+                              ? alpha(theme.palette.background.default, 1)
                               : "#0162C4",
                             borderRadius: 1.5,
                             width: "max-content",
                           }}
                         >
+                          <Stack
+                            direction={"row"}
+                            alignItems="center"
+                            justifyContent={"end"}
+                          >
+                            <CaretDown
+                              className="options"
+                              style={{
+                                color: el.incoming ? "#696969" : "#fff",
+                              }}
+                              p={1}
+                            />
+                          </Stack>
                           <Stack spacing={2}>
                             <Stack
                               p={2}
@@ -362,7 +356,7 @@ const Conversation = ({ isMobile }) => {
                               alignItems="center"
                               sx={{
                                 backgroundColor: alpha(
-                                  theme.palette.background.paper,
+                                  theme.palette.background.default,
                                   1
                                 ),
 
@@ -384,7 +378,6 @@ const Conversation = ({ isMobile }) => {
                             </Typography>
                           </Stack>
                         </Box>
-                        <MessageOption />
                       </Stack>
                     </MsgBox>
                   );
@@ -408,6 +401,21 @@ const Conversation = ({ isMobile }) => {
                             width: "max-content",
                           }}
                         >
+                          <Stack
+                            direction={"row"}
+                            alignItems="center"
+                            justifyContent={"end"}
+                          >
+                            <CaretDown
+                              className="options"
+                              style={{
+                                color: el.incoming
+                                  ? theme.palette.text
+                                  : "#fff",
+                              }}
+                              p={1}
+                            />
+                          </Stack>
                           <Typography
                             variant="body2"
                             color={el.incoming ? theme.palette.text : "#fff"}
@@ -415,7 +423,6 @@ const Conversation = ({ isMobile }) => {
                             {el.message}
                           </Typography>
                         </Box>
-                       <MessageOption />
                       </Stack>
                     </MsgBox>
                   );
@@ -435,11 +442,7 @@ const ChatComponent = () => {
   const theme = useTheme();
 
   return (
-    <Stack
-      height={"100%"}
-      maxHeight={"100vh"}
-      width={isMobile ? "100vw" : "auto"}
-    >
+    <Stack height={"100%"} maxHeight={"100vh"} width={isMobile ? "100vw" : "auto"}>
       {/*  */}
       <ChatHeader />
       <Box
